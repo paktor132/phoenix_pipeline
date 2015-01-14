@@ -128,7 +128,7 @@ def main(file_details, server_details, logger_file=None, run_filter=None,
     print("Updating story collection to set phoenix = 1")
     #here's a stab at the update part; needs to be tested
     for i, story in enumerate(list(results)):
-         conn.update({"_id": story['_id']},{"$set": {"phoenix": 1}})
+         story_collection.update({"_id": story['_id']},{"$set": {"phoenix": 1}})
     
     logger.info('PHOX.pipeline end')
     print('PHOX.pipeline end:', datetime.datetime.utcnow())
