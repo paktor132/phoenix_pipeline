@@ -67,7 +67,7 @@ def main(file_details, server_details, logger_file=None, run_filter=None,
         logger.info('Date string: {}'.format(date_string))
         print('Date string:', date_string)
 
-    results, scraperfilename = scraper_connection.main(process_date,
+    results, scraperfilename, story_collectio = scraper_connection.main(process_date,
                                                        file_details)
 
     if scraperfilename:
@@ -124,6 +124,10 @@ def main(file_details, server_details, logger_file=None, run_filter=None,
         print("""Error on the uploader. This step isn't absolutely necessary.
               Valid events should still be generated.""")
 
+    logger.info("Updating story collection to set phoenix = 1")
+    print("Updating story collection to set phoenix = 1")
+    #need to code the update bit here
+    
     logger.info('PHOX.pipeline end')
     print('PHOX.pipeline end:', datetime.datetime.utcnow())
 
