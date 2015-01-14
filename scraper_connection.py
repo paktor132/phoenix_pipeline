@@ -142,6 +142,9 @@ def main(current_date, file_details, write_file=False, file_stem=None):
     filename: String.
                 If `write_file` is True, contains the filename to which the
                 scraper results are writen. Otherwise is an empty string.
+    
+    conn: pymongo.collection.Collection.
+            Collection within MongoDB that holds the scraped news stories.
 
     """
     sources = _get_sources('source_keys.txt')
@@ -170,4 +173,4 @@ def main(current_date, file_details, write_file=False, file_stem=None):
         else:
             print('Need filestem to write results to file.')
 
-    return results, filename
+    return results, filename, conn
