@@ -388,13 +388,13 @@ def main(event_dict, this_date, file_details, server_details):
 
     logger.info('Writing event output.')
     runtime = datetime.datetime.utcnow()
-    runtime_dtg = '{:02d}_{:02d}_{:02d}_{:02d}_{:02d}_{:02d}'.format(runtime.year,
+    runtime_dtg = '{:02d}-{:02d}-{:02d}-{:02d}-{:02d}-{:02d}'.format(runtime.year,
                                                   runtime.month,
                                                   runtime.day,
                                                   runtime.hour,
                                                   runtime.minute,
                                                   runtime.second)
-    filename = '{}{}{}.txt'.format(file_details.fullfile_stem, this_date, runtime_dtg)
+    filename = '{}{}_{}.txt'.format(file_details.fullfile_stem, this_date, runtime_dtg)
     with io.open(filename, 'w', encoding='utf-8') as f:
         f.write(event_write)
 
