@@ -60,7 +60,7 @@ def main(file_details, server_details, logger_file=None, run_filter=None,
         logger.info('Date string: {}'.format(date_string))
         print('Date string:', date_string)
     else:
-        process_date = datetime.datetime.utcnow() - datetime.timedelta(days=1)
+        process_date = datetime.datetime.utcnow() - datetime.timedelta(days=0)
         date_string = '{:02d}{:02d}{:02d}'.format(process_date.year,
                                                   process_date.month,
                                                   process_date.day)
