@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 import io
 import logging
 import geolocation
+import datetime
+import dateutil
 
 
 def create_strings(events):
@@ -385,7 +387,14 @@ def main(event_dict, this_date, file_details, server_details):
     event_write = create_strings(updated_events)
 
     logger.info('Writing event output.')
-    filename = '{}{}.txt'.format(file_details.fullfile_stem, this_date)
+    runtime = datetime.datetime.utcnow()
+    runtime_dtg = '{:02d}_{:02d}_{:02d}_{:02d}_{:02d}_{:02d}'.format(runtime.year,
+                                                  runtime.month,
+                                                  runtime.day,
+                                                  runtime.hour,
+                                                  runtime.minute,
+                                                  runtime.second)
+    filename = '{}{}{}.txt'.format(file_details.fullfile_stem, this_date, runtime_dtg)
     with io.open(filename, 'w', encoding='utf-8') as f:
         f.write(event_write)
 
