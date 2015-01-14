@@ -67,7 +67,7 @@ def main(file_details, server_details, logger_file=None, run_filter=None,
         logger.info('Date string: {}'.format(date_string))
         print('Date string:', date_string)
 
-    results, scraperfilename, story_collectio = scraper_connection.main(process_date,
+    results, scraperfilename, story_collection = scraper_connection.main(process_date,
                                                        file_details)
 
     if scraperfilename:
@@ -126,7 +126,9 @@ def main(file_details, server_details, logger_file=None, run_filter=None,
 
     logger.info("Updating story collection to set phoenix = 1")
     print("Updating story collection to set phoenix = 1")
-    #need to code the update bit here
+    #here's a stab at the update part; needs to be tested
+    for i, story in enumerate(list(results)):
+         conn.update({"_id": story['_id']},{"$set": {"phoenix": 1}})
     
     logger.info('PHOX.pipeline end')
     print('PHOX.pipeline end:', datetime.datetime.utcnow())
