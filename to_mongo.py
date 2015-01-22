@@ -2,6 +2,6 @@
 from os import listdir
 from os.path import isfile, join
 
-mypath = '/home/vagrant/'
+mypath = '/home/vagrant/phoenix_output'
 files = [ f for f in listdir(mypath) if isfile(join(mypath,f)) ]
 print files
