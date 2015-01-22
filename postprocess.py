@@ -394,7 +394,7 @@ def main(event_dict, this_date, file_details, server_details):
                                                   runtime.hour,
                                                   runtime.minute,
                                                   runtime.second)
-    filename = '~/phoenix_output/{}{}_{}.txt'.format(file_details.fullfile_stem, this_date, runtime_dtg)
+    filename = '/home/vagrant/phoenix_output/{}{}_{}.txt'.format(file_details.fullfile_stem, this_date, runtime_dtg)
     with io.open(filename, 'w', encoding='utf-8') as f:
         f.write(event_write)
 
