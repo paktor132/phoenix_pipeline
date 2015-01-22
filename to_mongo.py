@@ -2,6 +2,11 @@
 from os import listdir
 from os.path import isfile, join
 import csv
+import utilities
+from pymongo import MongoClient
+
+collection = utilities.make_conn('','','')
+
 
 mypath = '/home/vagrant/phoenix_output'
 files = [ f for f in listdir(mypath) if isfile(join(mypath,f)) ]
@@ -35,4 +40,4 @@ for file in files:
             event_ids = row[23] # '54c179818250fc4e1e7aa659_1'
             event_urls = row[24] # these are clearly urls
             event_sources = row[25] # 'phil_bicolmail'
-            print event_source
+            print collection.find({"url": event_urls})
