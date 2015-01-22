@@ -138,6 +138,9 @@ if __name__ == '__main__':
     # initialize the various utilities globals
     server_details, file_details = utilities.parse_config('PHOX_config.ini')
 
-    main(file_details, server_details, file_details.log_file,
-         run_filter=file_details.oneaday_filter)
+    while 1:
+         main(file_details, server_details, file_details.log_file, run_filter=file_details.oneaday_filter)
+         yesterday_date = datetime.datetime.utcnow() - datetime.timedelta(days=1)
+         yesterday_date_string = '{:02d}{:02d}{:02d}'.format(process_date.year, process_date.month, process_date.day)
+         main(file_details, server_details, file_details.log_file, run_filter=file_details.oneaday_filter, run_date = yesterday_date_string)
     #may want to re-run main on one day previous in case events that show up in the database just before midnight are not caught
