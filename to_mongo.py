@@ -8,6 +8,6 @@ files = [ f for f in listdir(mypath) if isfile(join(mypath,f)) ]
 
 for file in files:
     with open(join(mypath,file),"r") as infile:
-        csvreader = csv.reader(infile, delimiter='\\t', quotechar='\\"')
+        csvreader = csv.reader(infile, delimiter='\t', quotechar='\"')
         for row in csvreader:
             print row
