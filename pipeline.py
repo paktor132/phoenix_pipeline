@@ -11,6 +11,7 @@ import postprocess
 import oneaday_filter
 import result_formatter
 import scraper_connection
+import to_mongo
 from petrarch import petrarch
 
 
@@ -140,7 +141,9 @@ if __name__ == '__main__':
 
     while 1:
          main(file_details, server_details, file_details.log_file, run_filter=file_details.oneaday_filter)
+         to_mongo.main()
          yesterday_date = datetime.datetime.utcnow() - datetime.timedelta(days=1)
          yesterday_date_string = '{:02d}{:02d}{:02d}'.format(yesterday_date.year, yesterday_date.month, yesterday_date.day)
          main(file_details, server_details, file_details.log_file, run_filter=file_details.oneaday_filter, run_date = yesterday_date_string)
+         to_mongo.main()
     #may want to re-run main on one day previous in case events that show up in the database just before midnight are not caught
