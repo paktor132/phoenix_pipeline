@@ -13,6 +13,7 @@ mypath = '/home/vagrant/phoenix_output'
 files = [ f for f in listdir(mypath) if isfile(join(mypath,f)) ]
 
 for file in files:
+    print join("Now processing ",file)
     with open(join(mypath,file),"r") as infile:
         csvreader = csv.reader(infile, delimiter='\t', quotechar='\"')
         for row in csvreader:
@@ -43,3 +44,6 @@ for file in files:
             phoenix_sources = row[25] # 'phil_bicolmail'
             print phoenix_urls
             collection.update({"_id": ObjectId(phoenix_ids.split("_")[0])},{"$set": {"phoenix_found": 1, "phoenix_date": phoenix_date, "phoenix_year": phoenix_year, "phoenix_month": phoenix_month, "phoenix_day": phoenix_day, "phoenix_source": phoenix_source, "phoenix_sourceroot": phoenix_sourceroot, "phoenix_sourceagent": phoenix_sourceagent, "phoenix_sourceothers": phoenix_sourceothers, "phoenix_target": phoenix_target, "phoenix_targetroot": phoenix_targetroot, "phoenix_targetagent": phoenix_targetagent, "phoenix_targetothers": phoenix_targetothers, "phoenix_code": phoenix_code, "phoenix_rootcode": phoenix_rootcode, "phoenix_quadclass": phoenix_quadclass, "phoenix_goldstein": phoenix_goldstein, "phoenix_joinedissues": phoenix_joinedissues, "phoenix_lat": phoenix_lat, "phoenix_lon": phoenix_lon, "phoenix_placename": phoenix_placename, "phoenix_statename": phoenix_statename, "phoenix_countryname": phoenix_countryname, "phoenix_ids": phoenix_ids, "phoenix_urls": phoenix_urls, "phoenix_sources": phoenix_sources}})
+    infile.close()
+    os.remove(join(mypath,file))
+    print join("Done processing ",file)
