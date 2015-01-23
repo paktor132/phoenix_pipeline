@@ -4,6 +4,7 @@ from os.path import isfile, join
 import csv
 import utilities
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 
 collection = utilities.make_conn('','','')
 
@@ -40,4 +41,5 @@ for file in files:
             phoenix_ids = row[23] # '54c179818250fc4e1e7aa659_1'
             phoenix_urls = row[24] # these are clearly urls
             phoenix_sources = row[25] # 'phil_bicolmail'
-            collection.update({"_id": event_ids},{"$set": {"phoenix_found": 1, "phoenix_date": phoenix_date, "phoenix_year": phoenix_year, "phoenix_month": phoenix_month, "phoenix_day": phoenix_day, "phoenix_source": phoenix_source, "phoenix_sourceroot": phoenix_sourceroot, "phoenix_sourceagent": phoenix_sourceagent, "phoenix_sourceothers": phoenix_sourceothers, "phoenix_target": phoenix_target, "phoenix_targetroot": phoenix_targetroot, "phoenix_targetagent": phoenix_targetagent, "phoenix_targetothers": phoenix_targetothers, "phoenix_code": phoenix_code, "phoenix_rootcode": phoenix_rootcode, "phoenix_quadclass": phoenix_quadclass, "phoenix_goldstein": phoenix_goldstein, "phoenix_joinedissues": phoenix_joinedissues, "phoenix_lat": phoenix_lat, "phoenix_lon": phoenix_lon, "phoenix_placename": phoenix_placename, "phoenix_statename": phoenix_statename, "phoenix_countryname": phoenix_countryname, "phoenix_ids": phoenix_ids, "phoenix_urls": phoenix_urls, "phoenix_sources": phoenix_sources}})
+            print phoenix_urls
+            collection.update({"_id": ObjectId(phoenix_ids.split("_")[0])},{"$set": {"phoenix_found": 1, "phoenix_date": phoenix_date, "phoenix_year": phoenix_year, "phoenix_month": phoenix_month, "phoenix_day": phoenix_day, "phoenix_source": phoenix_source, "phoenix_sourceroot": phoenix_sourceroot, "phoenix_sourceagent": phoenix_sourceagent, "phoenix_sourceothers": phoenix_sourceothers, "phoenix_target": phoenix_target, "phoenix_targetroot": phoenix_targetroot, "phoenix_targetagent": phoenix_targetagent, "phoenix_targetothers": phoenix_targetothers, "phoenix_code": phoenix_code, "phoenix_rootcode": phoenix_rootcode, "phoenix_quadclass": phoenix_quadclass, "phoenix_goldstein": phoenix_goldstein, "phoenix_joinedissues": phoenix_joinedissues, "phoenix_lat": phoenix_lat, "phoenix_lon": phoenix_lon, "phoenix_placename": phoenix_placename, "phoenix_statename": phoenix_statename, "phoenix_countryname": phoenix_countryname, "phoenix_ids": phoenix_ids, "phoenix_urls": phoenix_urls, "phoenix_sources": phoenix_sources}})
