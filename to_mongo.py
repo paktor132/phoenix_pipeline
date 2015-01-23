@@ -7,7 +7,7 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 
 
-if __name__ == '__main__':
+def main():
     collection = utilities.make_conn('','','')
     mypath = '/home/vagrant/phoenix_output'
     files = [ f for f in listdir(mypath) if isfile(join(mypath,f)) ]
