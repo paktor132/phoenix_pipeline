@@ -141,4 +141,3 @@ if __name__ == '__main__':
 
     main(file_details, server_details, file_details.log_file, run_filter=file_details.oneaday_filter, run_date=str(sys.argv[1]))
     to_mongo.main()
-        #may want to re-run main on one day previous in case events that show up in the database just before midnight are not caught
