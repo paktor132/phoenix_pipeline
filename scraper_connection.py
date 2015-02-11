@@ -56,7 +56,6 @@ def query_all(collection, lt_date, gt_date, sources, write_file=False):
         sent_detector = nltk.data.load('tokenizers/punkt/english.pickle')
         posts = collection.find({"$and": [{"date_added": {"$lt": lt_date}},
                                           {"date_added": {"$gt": gt_date}},
-                                          {"source": {"$in": sources}},
                                           {"stanford": 1},
                                           {"phoenix": 0}]})
         for num, post in enumerate(posts):
@@ -75,7 +74,6 @@ def query_all(collection, lt_date, gt_date, sources, write_file=False):
 
     posts = collection.find({"$and": [{"date_added": {"$lte": lt_date}},
                                       {"date_added": {"$gt": gt_date}},
-                                      {"source": {"$in": sources}},
                                       {"stanford": 1},
                                       {"phoenix": 0}]})
 
