@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 import re
 import logging
 from collections import namedtuple
-from pymongo import MongoClient
+from pymongo import MongoClient, ReadPreference
 
 try:
     from ConfigParser import ConfigParser
@@ -158,7 +158,7 @@ def make_conn(db_auth, db_user, db_pass):
                 Collection within MongoDB that holds the scraped news stories.
 
     """
-    client = MongoClient()
+    client = MongoClient(['scraper-mongodb-server-instance-1:27017','scraper-mongodb-server-instance-2:27017','scraper-mongodb-server-instance-3:27017','scraper-mongodb-server-instance-4:27017'],replicaSet='rs0',readPreference=ReadPreference.NEAREST)
     if db_auth:
         client[db_auth].authenticate(db_user, db_pass)
     database = client.event_scrape
